@@ -6,7 +6,7 @@ spring:
         name: test_paper_system
         url: jdbc:mysql://127.0.0.1:3306/test_paper_system?useUnicode=true&characterEncoding=utf-8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
         username: root
-        password: 960419
+        password: root
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver

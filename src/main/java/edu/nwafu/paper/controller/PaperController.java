@@ -1,13 +1,17 @@
 package edu.nwafu.paper.controller;
 
 import edu.nwafu.paper.beans.Paper;
+import edu.nwafu.paper.beans.PaperInfo;
+import edu.nwafu.paper.model.AddPaperListModel;
 import edu.nwafu.paper.service.impl.PaperService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,32 +52,6 @@ public class PaperController {
         return jsonObject;
     }
 
-    @PostMapping("/approve")
-    public Object approvePaper(int paperId){
-        JSONObject jsonObject = new JSONObject();
-        if (paperService.approvePaper(paperId) ==1){
-            jsonObject.element("stat", "ok");
-            jsonObject.element("msg", "审核通过");
-            return jsonObject;
-        }
-        jsonObject.element("stat","no");
-        return jsonObject;
-    }
-
-    @PostMapping("/auditnotpassed")
-    public Object auditNotPassed(int paperId){
-        JSONObject jsonObject = new JSONObject();
-        if (paperService.auditNotPassed(paperId) ==1){
-            jsonObject.element("stat", "ok");
-            jsonObject.element("msg", "审核不通过");
-            return jsonObject;
-
-        }
-        jsonObject.element("stat","no");
-        return jsonObject;
-
-    }
-
     @PostMapping("/gettestpaperwithstat")
     public Object getSubmitTestPaper(int stat) {
         JSONObject jsonObject = new JSONObject();
@@ -85,5 +63,30 @@ public class PaperController {
         return jsonObject;
     }
 
+    @PostMapping("/approve")
+    public Object approvePaper(int paperId, int userId) {
+        JSONObject jsonObject = new JSONObject();
+        if (paperService.approvePaper(paperId, userId) == 1) {
+            jsonObject.element("stat", "ok");
+            jsonObject.element("msg", "审核通过");
+            return jsonObject;
+        }
+        jsonObject.element("stat", "no");
+        return jsonObject;
+    }
+
+    @PostMapping("/auditnotpassed")
+    public Object auditNotPassed(int paperId, int userId) {
+        JSONObject jsonObject = new JSONObject();
+        if (paperService.auditNotPassed(paperId, userId) == 1) {
+            jsonObject.element("stat", "ok");
+            jsonObject.element("msg", "审核不通过");
+            return jsonObject;
+
+        }
+        jsonObject.element("stat", "no");
+        return jsonObject;
+
+    }
 
 }

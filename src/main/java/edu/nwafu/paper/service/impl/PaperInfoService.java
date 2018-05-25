@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
@@ -85,5 +88,91 @@ public class PaperInfoService {
 
     public int insertList(List<PaperInfo> paperInfoList) {
         return paperInfoMapper.insertList(paperInfoList);
+    }
+
+    public boolean output(int id, String name) throws FileNotFoundException {
+        String paperPath = "E:\\paper\\" + name + ".txt";
+        PrintWriter outputStream = null;
+        
+        PaperInfoModel model = getPapercompleteInfo(id);
+        
+        try {
+            outputStream = new PrintWriter(new FileOutputStream(paperPath));
+        }catch (Exception e ){
+            logger.error("创建" + paperPath + "失败！");
+            throw e;
+        }
+
+        outputStream.println(name);
+        
+        outputSingle(outputStream, model.getSingleChoicList(), model.getSingleChoicScore());
+        outputMultiple(outputStream, model.getMultipleChoicList(), model.getMultipleChoicScore());
+        outputFill(outputStream, model.getFillBlankList(), model.getFillBlankScore());
+        outputTOrF(outputStream, model.getTrueOrFalseList(), model.getTrueOrFalseScore());
+        outputQuesAndAns(outputStream, model.getQuesAndAnsList(), model.getQuesAndAnsScore());
+
+        outputStream.close();
+        return true;
+    }
+
+    private void outputQuesAndAns(PrintWriter outputStream, List<QuesAndAnsViewModel> quesAndAnsList, int score) {
+        outputStream.println("五 问答题(总分：" + score + ")");
+        for (QuesAndAnsViewModel model : quesAndAnsList){
+            outputStream.println(model.getSerialNumber() + "分值：" + model.getScore());
+            outputStream.println(model.getQuestion());
+            outputStream.println("答案:" + model.getAnswer());
+        }
+        outputStream.println();
+    }
+
+    private void outputTOrF(PrintWriter outputStream, List<TrueOrFalseViewModel> trueOrFalseList, int score) {
+        outputStream.println("四 判断题(总分：" + score + ")");
+        for (TrueOrFalseViewModel model : trueOrFalseList){
+            outputStream.println(model.getSerialNumber() + "分值：" + model.getScore());
+            outputStream.println(model.getQuestion());
+            outputStream.println("答案:" + model.getAnswer());
+        }
+        outputStream.println();
+
+    }
+
+    private void outputFill(PrintWriter outputStream, List<FillBlankViewModel> fillBlankList, int score) {
+        outputStream.println("三 多选题(总分：" + score + ")");
+        for (FillBlankViewModel model : fillBlankList){
+            outputStream.println(model.getSerialNumber() + "分值：" + model.getScore());
+            outputStream.println(model.getQuestion());
+            outputStream.println("答案:" + model.getAnswer());
+        }
+        outputStream.println();
+    }
+
+    private void outputMultiple(PrintWriter outputStream, List<MultipleChoiceViewModel> multipleChoicList, int score) {
+        outputStream.println("二 多选题(总分：" + score + ")");
+        for (MultipleChoiceViewModel model : multipleChoicList){
+            outputStream.println(model.getSerialNumber() + "分值：" + model.getScore());
+            outputStream.println(model.getQuestion());
+            outputStream.println(model.getA());
+            outputStream.println(model.getB());
+            outputStream.println(model.getC());
+            outputStream.println(model.getD());
+            outputStream.println(model.getE());
+            outputStream.println("答案:" + model.getAnswer());
+        }
+        outputStream.println();
+    }
+
+    private void outputSingle(PrintWriter outputStream, List<SingleChoicViewModel> singleChoicList, int score) {
+        outputStream.println("一 单选题 (总分：" + score + ")");
+        for (SingleChoicViewModel model : singleChoicList){
+            outputStream.println(model.getSerialNumber());
+            outputStream.println(model.getQuestion());
+            outputStream.println("分值：" + model.getScore());
+            outputStream.println(model.getA());
+            outputStream.println(model.getB());
+            outputStream.println(model.getC());
+            outputStream.println(model.getD());
+            outputStream.println("答案:" + model.getAnswer());
+        }
+        outputStream.println();
     }
 }

@@ -19,6 +19,9 @@ public class SingleChoiceService {
     @Autowired
     private SingleChoicMapper singleChoicMapper;
 
+    @Autowired
+    private KnowledgePointService knowledgePointService;
+
     public List getSingleQuestions(){
         List<SingleChoic> list = singleChoicMapper.selectAll();
         List<Map> listMap = new ArrayList<>();
@@ -30,7 +33,10 @@ public class SingleChoiceService {
             map.put("score",singleChoic.getScore());
             map.put("usageCount",singleChoic.getUsageCount());
             map.put("faq",singleChoic.getFaq());
+            map.put("difficult",singleChoic.getDifficult());
+            map.put("knowledge",knowledgePointService.getKonwledgeById(singleChoic.getPointId()).getName());
             map.put("optioncontent",singleChoic.getA()+singleChoic.getB()+ singleChoic.getC()+singleChoic.getD());
+
             listMap.add(map);
         }
         return listMap;

@@ -101,7 +101,7 @@ public class OrganizationController {
         int res = paperInfoService.insertList(paperInfoList);
 
         if (res > 0) {
-            return new JSONObject().element("stat", "ok");
+            return new JSONObject().element("stat", "ok").element("msg","试卷" + papername + "生成成功");
         } else {
             return new JSONObject().element("stat","no").element("msg","创建试卷失败");
         }
@@ -193,5 +193,36 @@ public class OrganizationController {
         }
 
         return source;
+    }
+
+    @PostMapping("/submitreview")
+    public Object submitReview(int paperId){
+        JSONObject jsonObject = new JSONObject();
+
+        if (paperService.submitreview(paperId) != 1){
+            jsonObject.element("stat","no");
+            return jsonObject;
+        }
+
+        jsonObject.element("stat","yes");
+        jsonObject.element("msg","提交审核成功");
+
+        return jsonObject;
+
+    }
+
+    @PostMapping("/cancelreview")
+    public Object cancelReview(int paperId){
+        JSONObject jsonObject = new JSONObject();
+
+        if (paperService.cancelreview(paperId) != 1){
+            jsonObject.element("stat","no");
+            return jsonObject;
+        }
+
+        jsonObject.element("stat","yes");
+        jsonObject.element("msg","取消提交审核成功");
+
+        return jsonObject;
     }
 }

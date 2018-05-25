@@ -110,7 +110,7 @@
       #{parameterId,jdbcType=INTEGER}, #{creatorId,jdbcType=INTEGER}, #{reviewerId,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="edu.nwafu.paper.beans.Paper">
+  <insert id="insertSelective" parameterType="edu.nwafu.paper.beans.Paper" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into paper
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

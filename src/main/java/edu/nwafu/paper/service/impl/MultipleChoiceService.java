@@ -20,6 +20,9 @@ public class MultipleChoiceService {
     @Autowired
     private MultipleChoiceMapper multipleChoiceMapper;
 
+    @Autowired
+    private KnowledgePointService knowledgePointService;
+
 
     public List getMultipleQuestions() {
         List<MultipleChoice> list = multipleChoiceMapper.selectAll();
@@ -32,6 +35,8 @@ public class MultipleChoiceService {
             map.put("score",multipleChoice.getScore());
             map.put("usageCount",multipleChoice.getUsageCount());
             map.put("faq",multipleChoice.getFaq());
+            map.put("difficult",multipleChoice.getDifficult());
+            map.put("knowledge",knowledgePointService.getKonwledgeById(multipleChoice.getPointId()).getName());
             map.put("optioncontent",multipleChoice.getA()+multipleChoice.getB()+ multipleChoice.getC()+multipleChoice.getD()+multipleChoice.getE());
             listMap.add(map);
         }

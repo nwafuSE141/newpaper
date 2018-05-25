@@ -14,7 +14,11 @@ public class Paper {
 
     private Integer creatorId;
 
+    private String creator;
+
     private Integer reviewerId;
+
+    private String reviewer;
 
     private Date createTime;
 
@@ -23,6 +27,22 @@ public class Paper {
     private Integer state;
 
     private String status;
+
+    public String getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
 
     public String getStatus() {
         return status;
