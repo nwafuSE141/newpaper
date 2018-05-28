@@ -19,4 +19,6 @@ public interface QuesAndAnsMapper {
     int updateByPrimaryKey(QuesAndAns record);
 
     List<QuesAndAns> selectAll();
+
+    int increaseUseCount(int id);
 }

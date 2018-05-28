@@ -47,4 +47,8 @@ public class MultipleChoiceService {
     public MultipleChoice getMultipleById(int id) {
         return multipleChoiceMapper.selectByPrimaryKey(id);
     }
+
+    public int increaseUseCount(int id) {
+        return multipleChoiceMapper.increaseUseCount(id);
+    }
 }

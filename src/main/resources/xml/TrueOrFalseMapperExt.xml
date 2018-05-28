@@ -4,4 +4,8 @@
   <select id="selectAll" resultMap="BaseResultMap">
       select * from true_or_false
   </select>
+    <update id="increaseUseCount">
+        UPDATE true_or_false SET usage_count = usage_count + 1 WHERE id = #{id}
+    </update>
+
 </mapper>

@@ -19,4 +19,6 @@ public interface SingleChoicMapper {
     int updateByPrimaryKey(SingleChoic record);
 
     List<SingleChoic> selectAll();
+
+    int increaseUseCount(int id);
 }

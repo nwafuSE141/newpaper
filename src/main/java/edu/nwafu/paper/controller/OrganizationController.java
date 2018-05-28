@@ -147,6 +147,8 @@ public class OrganizationController {
             paperInfo.setQuestionId(questionId);
             paperInfoList.add(paperInfo);
 
+            singleChoiceService.increaseUseCount(questionId);
+
             //获取分数
             source += singleChoiceService.getSingleById(questionId).getScore();
         }
@@ -158,6 +160,8 @@ public class OrganizationController {
             paperInfo.setQuestionId(questionId);
             paperInfoList.add(paperInfo);
 
+            multipleChoiceService.increaseUseCount(questionId);
+
             source += multipleChoiceService.getMultipleById(questionId).getScore();
         }
 
@@ -167,6 +171,8 @@ public class OrganizationController {
             paperInfo.setTypeId(10003);
             paperInfo.setQuestionId(questionId);
             paperInfoList.add(paperInfo);
+
+            fillBlankService.increaseUseCount(questionId);
 
             source += fillBlankService.getFillBlankById(questionId).getScore();
         }
@@ -179,6 +185,8 @@ public class OrganizationController {
             paperInfo.setQuestionId(questionId);
             paperInfoList.add(paperInfo);
 
+            trueOrFalseServicel.increaseUseCount(questionId);
+
             source += trueOrFalseServicel.getTrueOrFalseById(questionId).getScore();
         }
 
@@ -188,6 +196,8 @@ public class OrganizationController {
             paperInfo.setTypeId(10005);
             paperInfo.setQuestionId(questionId);
             paperInfoList.add(paperInfo);
+
+            quesAndAnsService.increaseUseCount(questionId);
 
             source += quesAndAnsService.getQuesAndAnsById(questionId).getScore();
         }

@@ -4,4 +4,7 @@
  <select id="selectAll" resultMap="BaseResultMap">
      select * from single_choic
  </select>
+    <update id="increaseUseCount">
+        UPDATE single_choic SET usage_count = usage_count + 1 WHERE id = #{id}
+    </update>
 </mapper>

@@ -72,4 +72,7 @@ public class QuesAndAnsService implements ItemService {
         return quesAndAnsMapper.selectByPrimaryKey(id);
     }
 
+    public int increaseUseCount(int id) {
+        return quesAndAnsMapper.increaseUseCount(id);
+    }
 }

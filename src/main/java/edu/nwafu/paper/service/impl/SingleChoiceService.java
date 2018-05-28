@@ -45,4 +45,8 @@ public class SingleChoiceService {
     public SingleChoic getSingleById(int id) {
         return singleChoicMapper.selectByPrimaryKey(id);
     }
+
+    public int increaseUseCount(int id) {
+        return singleChoicMapper.increaseUseCount(id);
+    }
 }

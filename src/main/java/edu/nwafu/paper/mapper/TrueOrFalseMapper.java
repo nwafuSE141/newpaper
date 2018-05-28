@@ -19,4 +19,6 @@ public interface TrueOrFalseMapper {
     int updateByPrimaryKey(TrueOrFalse record);
 
     List<TrueOrFalse> selectAll();
+
+    int increaseUseCount(int id);
 }

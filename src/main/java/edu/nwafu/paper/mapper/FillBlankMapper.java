@@ -19,4 +19,6 @@ public interface FillBlankMapper {
     int updateByPrimaryKey(FillBlank record);
 
     List<FillBlank> selectAll();
+
+    int increaseUseCount(int id);
 }

@@ -72,4 +72,7 @@ public class FillBlankService implements ItemService {
         return fillBlankMapper.selectByPrimaryKey(id);
     }
 
+    public int increaseUseCount(int id) {
+        return fillBlankMapper.increaseUseCount(id);
+    }
 }

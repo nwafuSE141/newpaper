@@ -71,4 +71,7 @@ public class TrueOrFalseService implements ItemService {
         return trueOrFalseMapper.selectByPrimaryKey(id);
     }
 
+    public int increaseUseCount(int id) {
+        return trueOrFalseMapper.increaseUseCount(id);
+    }
 }

@@ -33,3 +33,5 @@ pagehelper:
 mybatis:
   type-aliases-package: edu.nwafu.paper.beans
   mapper-locations: classpath:xml/*.xml
+logging:
+  path: E:/paper/log

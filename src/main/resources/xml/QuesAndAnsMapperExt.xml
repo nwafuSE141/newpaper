@@ -4,4 +4,7 @@
     <select id="selectAll" resultMap="BaseResultMap">
         select * from ques_and_ans
     </select>
+    <update id="increaseUseCount">
+        UPDATE ques_and_ans SET usage_count = usage_count + 1 WHERE id = #{id}
+    </update>
 </mapper>

@@ -19,4 +19,6 @@ public interface MultipleChoiceMapper {
     int updateByPrimaryKey(MultipleChoice record);
 
     List<MultipleChoice> selectAll();
+
+    int increaseUseCount(int id);
 }
