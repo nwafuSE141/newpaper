@@ -91,7 +91,7 @@ public class PaperInfoService {
     }
 
     public boolean output(int id, String name) throws FileNotFoundException {
-        String paperPath = "E:\\paper\\" + name + ".txt";
+        String paperPath = "E:\\paper\\" + id + ".txt";
         PrintWriter outputStream = null;
         
         PaperInfoModel model = getPapercompleteInfo(id);
