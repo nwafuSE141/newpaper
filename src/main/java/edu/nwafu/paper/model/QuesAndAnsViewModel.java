@@ -7,6 +7,7 @@ import edu.nwafu.paper.beans.QuesAndAns;
  * @data 2018/5/4
  */
 public class QuesAndAnsViewModel {
+    private int difficult;
     private int id;
     private int  serialNumber;
     private String question;
@@ -18,6 +19,16 @@ public class QuesAndAnsViewModel {
         this.question = quesAndAns.getQuestion();
         this.answer = quesAndAns.getAnswer();
         this.score = quesAndAns.getScore();
+        this.difficult = Integer.valueOf(quesAndAns.getDifficult());
+
+    }
+
+    public int getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(int difficult) {
+        this.difficult = difficult;
     }
 
     public int getId() {

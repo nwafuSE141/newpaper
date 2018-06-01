@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author TinChiWay
@@ -47,41 +49,55 @@ public class PaperInfoService {
     public PaperInfoModel getPapercompleteInfo(Integer paperId){
 
         List<PaperInfo> infoList = paperInfoMapper.getPaperInfo(paperId);
+        Set<Integer> knowlageSet = new HashSet<>();
 
         PaperInfoModel paperInfoModel = new PaperInfoModel();
+
         for (PaperInfo info : infoList){
             if (info.getTypeId() == 10001){
                 SingleChoic singleChoic = singleChoicMapper.selectByPrimaryKey(info.getQuestionId());
                 SingleChoicViewModel model = new SingleChoicViewModel(singleChoic);
                 model.setSerialNumber(info.getSerialNumber());
                 paperInfoModel.addSingChioice(model);
+
+                knowlageSet.add(singleChoic.getPointId());
+
             }
             if (info.getTypeId() == 10002){
                 MultipleChoice multipleChoice = multipleChoiceMapper.selectByPrimaryKey(info.getQuestionId());
                 MultipleChoiceViewModel model = new MultipleChoiceViewModel(multipleChoice);
                 model.setSerialNumber(info.getSerialNumber());
                 paperInfoModel.addMultipleChoice(model);
+
+                knowlageSet.add(multipleChoice.getPointId());
             }
             if (info.getTypeId() == 10003){
                 FillBlank fillBlank = fillBlankMapper.selectByPrimaryKey(info.getQuestionId());
                 FillBlankViewModel model = new FillBlankViewModel(fillBlank);
                 model.setSerialNumber(info.getSerialNumber());
                 paperInfoModel.addFillBlank(model);
+
+                knowlageSet.add(fillBlank.getPointId());
             }
             if (info.getTypeId() == 10004){
                 TrueOrFalse trueOrFalse = trueOrFalseMapper.selectByPrimaryKey(info.getQuestionId());
                 TrueOrFalseViewModel model = new TrueOrFalseViewModel(trueOrFalse);
                 model.setSerialNumber(info.getSerialNumber());
                 paperInfoModel.addTrueOrFalse(model);
+
+                knowlageSet.add(trueOrFalse.getPointId());
             }
             if (info.getTypeId() == 10005){
                 QuesAndAns quesAndAns = quesAndAnsMapper.selectByPrimaryKey(info.getQuestionId());
                 QuesAndAnsViewModel model = new QuesAndAnsViewModel(quesAndAns);
                 model.setSerialNumber(info.getSerialNumber());
                 paperInfoModel.addQuesAndAns(model);
+
+                knowlageSet.add(quesAndAns.getPointId());
             }
         }
 
+        paperInfoModel.setKnowlageNum(knowlageSet.size());
         return paperInfoModel;
 
     }

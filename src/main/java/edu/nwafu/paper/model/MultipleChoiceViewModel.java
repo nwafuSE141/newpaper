@@ -18,6 +18,8 @@ public class MultipleChoiceViewModel {
     private String d;
     private String e;
 
+    private int difficult;
+
     public MultipleChoiceViewModel(MultipleChoice multipleChoice) {
         this.id = multipleChoice.getId();
         this.question = multipleChoice.getQuestion();
@@ -28,6 +30,15 @@ public class MultipleChoiceViewModel {
         this.c = multipleChoice.getC();
         this.d = multipleChoice.getD();
         this.e =multipleChoice.getE();
+        this.difficult = Integer.valueOf(multipleChoice.getDifficult());
+    }
+
+    public int getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(int difficult) {
+        this.difficult = difficult;
     }
 
     public int getId() {

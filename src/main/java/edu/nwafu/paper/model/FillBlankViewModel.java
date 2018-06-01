@@ -7,6 +7,7 @@ import edu.nwafu.paper.beans.FillBlank;
  * @data 2018/5/4
  */
 public class FillBlankViewModel {
+    private int difficult;
     private int  serialNumber;
     private int id;
     private String question;
@@ -18,6 +19,15 @@ public class FillBlankViewModel {
         this.question = fillBlank.getQuestion();
         this.answer = fillBlank.getAnswer();
         this.score = fillBlank.getScore();
+        this.difficult = Integer.valueOf(fillBlank.getDifficult());
+    }
+
+    public int getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(int difficult) {
+        this.difficult = difficult;
     }
 
     public int getId() {

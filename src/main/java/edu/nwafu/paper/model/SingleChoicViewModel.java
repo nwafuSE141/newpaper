@@ -14,6 +14,7 @@ public class SingleChoicViewModel {
     private String b;
     private String c;
     private String d;
+    private int difficult;
 
 
     public SingleChoicViewModel(SingleChoic singleChoic) {
@@ -25,6 +26,7 @@ public class SingleChoicViewModel {
         this.b = singleChoic.getB();
         this.c = singleChoic.getC();
         this.d = singleChoic.getD();
+        this.difficult = Integer.valueOf(singleChoic.getDifficult());
     }
 
     public int getSerialNumber() {
@@ -89,5 +91,21 @@ public class SingleChoicViewModel {
 
     public void setD(String d) {
         this.d = d;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(int difficult) {
+        this.difficult = difficult;
     }
 }

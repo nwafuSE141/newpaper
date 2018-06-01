@@ -21,35 +21,64 @@ public class PaperInfoModel {
     int quesAndAnsScore = 0;
     int sumScore = 0;
 
+    int knowlageNum = 0;
+
+    int hardNum = 0;
+    int normalNum = 0;
+    int easynum = 0;
 
     public void addSingChioice(SingleChoicViewModel model) {
         this.singleChoicList.add(model);
         this.singleChoicScore += model.getScore();
         this.sumScore += model.getScore();
+        int difficult = model.getDifficult();
+        addDifficultParam(difficult);
+    }
+
+    private void addDifficultParam(int difficult) {
+        if (difficult < 3){
+            easynum ++;
+        }else if (difficult >4){
+            hardNum++;
+        }else {
+            normalNum++;
+        }
     }
 
     public void addMultipleChoice(MultipleChoiceViewModel model) {
         this.multipleChoicList.add(model);
         this.multipleChoicScore += model.getScore();
         this.sumScore += model.getScore();
+
+        int difficult = model.getDifficult();
+        addDifficultParam(difficult);
     }
 
     public void addFillBlank(FillBlankViewModel model) {
         this.fillBlankList.add(model);
         this.fillBlankScore += model.getScore();
         this.sumScore += model.getScore();
+
+        int difficult = model.getDifficult();
+        addDifficultParam(difficult);
     }
 
     public void addTrueOrFalse(TrueOrFalseViewModel model) {
         this.trueOrFalseList.add(model);
         this.trueOrFalseScore += model.getScore();
         this.sumScore += model.getScore();
+
+        int difficult = model.getDifficult();
+        addDifficultParam(difficult);
     }
 
     public void addQuesAndAns(QuesAndAnsViewModel model) {
         this.quesAndAnsList.add(model);
         this.quesAndAnsScore += model.getScore();
         this.sumScore += model.getScore();
+
+        int difficult = model.getDifficult();
+        addDifficultParam(difficult);
     }
 
     public int getSumScore() {
@@ -140,20 +169,51 @@ public class PaperInfoModel {
         this.quesAndAnsScore = quesAndAnsScore;
     }
 
-    @Override
-    public String toString() {
-        return "PaperInfoModel{" +
-                "singleChoicList=" + singleChoicList +
-                ", multipleChoicList=" + multipleChoicList +
-                ", fillBlankList=" + fillBlankList +
-                ", trueOrFalseList=" + trueOrFalseList +
-                ", quesAndAnsList=" + quesAndAnsList +
-                ", singleChoicScore=" + singleChoicScore +
-                ", multipleChoicScore=" + multipleChoicScore +
-                ", fillBlankScore=" + fillBlankScore +
-                ", trueOrFalseScore=" + trueOrFalseScore +
-                ", quesAndAnsScore=" + quesAndAnsScore +
-                ", sumScore=" + sumScore +
-                '}';
+    public int getKnowlageNum() {
+        return knowlageNum;
     }
+
+    public void setKnowlageNum(int knowlageNum) {
+        this.knowlageNum = knowlageNum;
+    }
+
+    public int getHardNum() {
+        return hardNum;
+    }
+
+    public void setHardNum(int hardNum) {
+        this.hardNum = hardNum;
+    }
+
+    public int getNormalNum() {
+        return normalNum;
+    }
+
+    public void setNormalNum(int normalNum) {
+        this.normalNum = normalNum;
+    }
+
+    public int getEasynum() {
+        return easynum;
+    }
+
+    public void setEasynum(int easynum) {
+        this.easynum = easynum;
+    }
+    //    @Override
+//    public String toString() {
+//        return "PaperInfoModel{" +
+//                "singleChoicList=" + singleChoicList +
+//                ", multipleChoicList=" + multipleChoicList +
+//                ", fillBlankList=" + fillBlankList +
+//                ", trueOrFalseList=" + trueOrFalseList +
+//                ", quesAndAnsList=" + quesAndAnsList +
+//                ", singleChoicScore=" + singleChoicScore +
+//                ", multipleChoicScore=" + multipleChoicScore +
+//                ", fillBlankScore=" + fillBlankScore +
+//                ", trueOrFalseScore=" + trueOrFalseScore +
+//                ", quesAndAnsScore=" + quesAndAnsScore +
+//                ", sumScore=" + sumScore +
+//                '}';
+//    }
 }

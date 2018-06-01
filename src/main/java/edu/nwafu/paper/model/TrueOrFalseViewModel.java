@@ -7,6 +7,7 @@ import edu.nwafu.paper.beans.TrueOrFalse;
  * @data 2018/5/4
  */
 public class TrueOrFalseViewModel {
+    private int difficult;
     private int  serialNumber;
     private String question;
     private String answer;
@@ -18,6 +19,15 @@ public class TrueOrFalseViewModel {
         this.question = trueOrFalse.getQuestion();
         this.answer = trueOrFalse.getAnswer();
         this.score = trueOrFalse.getScore();
+        this.difficult = Integer.valueOf(trueOrFalse.getDifficult());
+    }
+
+    public int getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(int difficult) {
+        this.difficult = difficult;
     }
 
     public int getId() {
