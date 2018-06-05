@@ -1,17 +1,13 @@
 package edu.nwafu.paper.controller;
 
 import edu.nwafu.paper.beans.Paper;
-import edu.nwafu.paper.beans.PaperInfo;
-import edu.nwafu.paper.model.AddPaperListModel;
 import edu.nwafu.paper.service.impl.PaperService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,9 +21,17 @@ public class PaperController {
     @Autowired
     PaperService paperService;
 
-    @PostMapping("/delete")
-    public int deletePaperById(int id) {
-        return paperService.deleteByPrimaryKey(id);
+    @PostMapping("/deletepaper")
+    public Object deletePaperById(int id) {
+        JSONObject jsonObject = new JSONObject();
+
+        int res = paperService.deleteByPrimaryKey(id);
+        if (res == 1){
+            jsonObject.element("msg", "删除成功");
+        }else {
+            jsonObject.element("msg", "删除失败");
+        }
+        return jsonObject;
     }
 
     @PostMapping("/getpaperwithuserid")
