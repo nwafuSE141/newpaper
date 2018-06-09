@@ -35,7 +35,7 @@ public class SingleChoiceService {
             map.put("faq",singleChoic.getFaq());
             map.put("difficult",singleChoic.getDifficult());
             map.put("knowledge",knowledgePointService.getKonwledgeById(singleChoic.getPointId()).getName());
-            map.put("optioncontent",singleChoic.getA()+singleChoic.getB()+ singleChoic.getC()+singleChoic.getD());
+            map.put("optioncontent",singleChoic.getA()+";"+singleChoic.getB()+";"+ singleChoic.getC()+";"+singleChoic.getD());
 
             listMap.add(map);
         }

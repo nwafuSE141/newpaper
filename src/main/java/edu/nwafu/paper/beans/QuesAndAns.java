@@ -27,6 +27,16 @@ public class QuesAndAns {
 
     private Date createTime;
 
+    private String knowledge;
+
+    public String getKnowledge() {
+        return knowledge;
+    }
+
+    public void setKnowledge(String knowledge) {
+        this.knowledge = knowledge;
+    }
+
     public Integer getId() {
         return id;
     }

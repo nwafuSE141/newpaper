@@ -37,7 +37,7 @@ public class MultipleChoiceService {
             map.put("faq",multipleChoice.getFaq());
             map.put("difficult",multipleChoice.getDifficult());
             map.put("knowledge",knowledgePointService.getKonwledgeById(multipleChoice.getPointId()).getName());
-            map.put("optioncontent",multipleChoice.getA()+multipleChoice.getB()+ multipleChoice.getC()+multipleChoice.getD()+multipleChoice.getE());
+            map.put("optioncontent",multipleChoice.getA()+";"+multipleChoice.getB()+";"+ multipleChoice.getC()+";"+multipleChoice.getD()+";"+multipleChoice.getE());
             listMap.add(map);
         }
         return listMap;

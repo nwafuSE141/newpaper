@@ -17,6 +17,9 @@ public class QuesAndAnsService implements ItemService {
     @Autowired
     private QuesAndAnsMapper quesAndAnsMapper;
 
+    @Autowired
+    private KnowledgePointService knowledgePointService;
+
     @Override
     public List getItems(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
@@ -65,7 +68,11 @@ public class QuesAndAnsService implements ItemService {
     }
 
     public List getQuesAndAnsQuestions(){
-        return quesAndAnsMapper.selectAll();
+        List<QuesAndAns> list = quesAndAnsMapper.selectAll();
+        for (QuesAndAns quesAndAns : list){
+            quesAndAns.setKnowledge(knowledgePointService.getKonwledgeById(quesAndAns.getPointId()).getName());
+        }
+        return list;
     }
 
     public QuesAndAns getQuesAndAnsById(int id) {

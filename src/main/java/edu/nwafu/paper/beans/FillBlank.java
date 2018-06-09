@@ -29,6 +29,8 @@ public class FillBlank {
 
     private Date createTime;
 
+    private String knowledge;
+
     public Integer getId() {
         return id;
     }
@@ -131,5 +133,13 @@ public class FillBlank {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getKnowledge() {
+        return knowledge;
+    }
+
+    public void setKnowledge(String knowledge) {
+        this.knowledge = knowledge;
     }
 }

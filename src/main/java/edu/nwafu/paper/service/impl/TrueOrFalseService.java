@@ -16,6 +16,10 @@ public class TrueOrFalseService implements ItemService {
 
     @Autowired
     private TrueOrFalseMapper trueOrFalseMapper;
+
+    @Autowired
+    private KnowledgePointService knowledgePointService;
+
     @Override
     public List getItems(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
@@ -64,7 +68,11 @@ public class TrueOrFalseService implements ItemService {
     }
 
     public List getTrueOrFalseQuestion(){
-        return trueOrFalseMapper.selectAll();
+        List<TrueOrFalse> list = trueOrFalseMapper.selectAll();
+        for (TrueOrFalse trueOrFalse: list) {
+            trueOrFalse.setKnowledge(knowledgePointService.getKonwledgeById(trueOrFalse.getPointId()).getName());
+        }
+        return list;
     }
 
     public TrueOrFalse getTrueOrFalseById(int id) {

@@ -17,6 +17,9 @@ public class FillBlankService implements ItemService {
     @Autowired
     private FillBlankMapper fillBlankMapper;
 
+    @Autowired
+    private KnowledgePointService knowledgePointService;
+
     @Override
     public List getItems(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
@@ -65,7 +68,11 @@ public class FillBlankService implements ItemService {
     }
 
     public List getFillBlankQuestion(){
-        return fillBlankMapper.selectAll();
+        List<FillBlank> list = fillBlankMapper.selectAll();
+        for (FillBlank fill: list) {
+            fill.setKnowledge(knowledgePointService.getKonwledgeById(fill.getPointId()).getName());
+        }
+        return list;
     }
 
     public FillBlank getFillBlankById(int id) {
